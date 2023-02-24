@@ -10,8 +10,10 @@ async function getNews(req: Request, res: Response) {
         return res.json({
             status: "succes",
             code: 200,
-            data: result,
-            totalCount: data.length
+            data: {
+                items: result,
+                totalCount: data.length
+            },
         })
     } catch (error) {
         if (axios.isAxiosError(error)) {
