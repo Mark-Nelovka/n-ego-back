@@ -1,8 +1,8 @@
-import userLogin from '../controllers/auth';
 import express from 'express';
+import getNews from '../controllers/getNews';
 
 const router = express.Router();
 
-router.post("/", userLogin);
+router.get("/:page", getNews);
 
 export default router;

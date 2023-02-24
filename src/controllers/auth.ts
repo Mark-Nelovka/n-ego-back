@@ -1,14 +1,13 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-const user = require("../../src/user.json")
-// import user from "../../src/user.json";
+const user = require("../../user.json")
 
 async function userLogin(req: Request, res: Response) {
     const { name, password } = req.body;
 
     if (name !== user.userName) {
-        res.status(400).json({ message: 'Неверный userName' });
+        res.status(400).json({ message: 'Invalid name' });
         return;
     }
 
@@ -16,7 +15,7 @@ async function userLogin(req: Request, res: Response) {
 
 
     if (!isMatch) {
-      return res.status(400).json({ message: 'Неверный пароль' });
+      return res.status(400).json({ message: 'Invalid password' });
     }
 
     const token = jwt.sign({ username: "admin" }, "Popap");
