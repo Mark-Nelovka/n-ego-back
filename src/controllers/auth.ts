@@ -4,19 +4,27 @@ import jwt from 'jsonwebtoken';
 const user = require("../../user.json")
 
 async function userLogin(req: Request, res: Response) {
-    const { name, password } = req.body;
+  const { name, password } = req.body;
+  let checkName: boolean
+  let checkPassword: boolean
 
-    if (name !== user.userName) {
-        res.status(400).json({ message: 'Invalid name' });
-        return;
-    }
+  const isMatch = await bcrypt.compare(password, user.password);
 
-    const isMatch = await bcrypt.compare(password, user.password);
+  checkName = name !== user.userName ? false :  true
 
+  checkPassword = !isMatch ? false : true
 
-    if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid password' });
-    }
+  if (!checkName || !checkPassword) {
+    return res.status(401).json({
+      status: "error",
+      code: 401,
+      message: "Name or password invalid",
+      error: {
+        name: checkName,
+        password: checkPassword
+      }
+    })
+  }
 
     const token = jwt.sign({ username: "admin" }, "Popap");
     res.status(200).json({ token });
