@@ -5,9 +5,9 @@ async function getNews(req: Request, res: Response) {
     const { params } = req;
 
     try {
-        const {data} = await axios.get(`${process.env.NEWS_API}/v3/articles`);
+        const { data } = await axios.get(`${process.env.NEWS_API}/v3/articles`);
         const result = data.slice(0, +params.page * 4);
-        return res.json({
+        return res.status(200).json({
             status: "succes",
             code: 200,
             data: {
@@ -16,13 +16,14 @@ async function getNews(req: Request, res: Response) {
             },
         })
     } catch (error) {
-        if (axios.isAxiosError(error)) {
-             return res.json({
-            status: error.status,
-            code: error.code,
-            message: error.message
-        })
-        }
+        return res.status(404).json({
+            status: "error",
+            code: 404,
+            data: {
+                message: "Not found"
+            }
+        });
+
     }
 }
 

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-const user = require("../../user.json")
+import user from "../../user.json";
 
 async function userLogin(req: Request, res: Response) {
   const { name, password } = req.body;
@@ -10,16 +10,15 @@ async function userLogin(req: Request, res: Response) {
 
   const isMatch = await bcrypt.compare(password, user.password);
 
-  checkName = name !== user.userName ? false :  true
+  checkName = name !== user.userName ? false : true;
 
-  checkPassword = !isMatch ? false : true
-
+  checkPassword = !isMatch ? false : true;
   if (!checkName || !checkPassword) {
     return res.status(401).json({
       status: "error",
       code: 401,
       message: "Name or password invalid",
-      error: {
+      data: {
         name: checkName,
         password: checkPassword
       }
