@@ -1,5 +1,6 @@
 
-import express, { Application, Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
+import express from "express";
 import loginRouter from "./src/routers/login";
 import newsRouter from "./src/routers/news";
 import cors from "cors";
