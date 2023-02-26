@@ -1,8 +1,8 @@
 
-import { Request, Response, NextFunction } from "express";
 import express from "express";
-import loginRouter from "./src/routers/login";
-import newsRouter from "./src/routers/news";
+// import express from "express";
+import loginRouter from "./routers/login";
+import newsRouter from "./routers/news";
 import cors from "cors";
 import dotenv from "dotenv"
 
@@ -17,11 +17,11 @@ app.use("/login", loginRouter);
 app.use("/news", newsRouter);
 
 
-app.use((req: Request, res: Response) => {
+app.use((req: express.Request, res: express.Response) => {
   res.status(404).json({ message: "404 Not found" });
 });
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   res.status(500).json({ message: err.message });
 });
 

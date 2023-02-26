@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { Request, Response } from 'express';
+import * as r from 'express';
 
-async function getNews(req: Request, res: Response) {
+async function getNews(req: r.Request, res: r.Response) {
     const { params } = req;
 
     try {
