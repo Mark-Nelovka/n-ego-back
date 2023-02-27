@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch src --exec ts-node src/app.ts",
-    "start": "tsc && node src/build/app.js",
+    "start": "tsc && node build/src/app.js",
     "build": "tsc -p . --outDir build"
   },
   "repository": {

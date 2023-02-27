@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
-const user = require("../../user.json");
-// import user from "../../user.json";
+// const user = require("../../user.json");
+import user from "../../user.json";
 
 async function userLogin(req: Request, res: Response) {
   const { name, password } = req.body;
