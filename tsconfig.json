@@ -4,7 +4,7 @@
     "module": "commonjs",
     "lib": ["es6", "dom", "ES2015"],
     "typeRoots": ["node_modules/@types"],
-    "outDir": "./build",
+    "outDir": "./src/build",
     "strict": true,
     "sourceMap": true,
     "esModuleInterop": true,
