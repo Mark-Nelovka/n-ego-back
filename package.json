@@ -2,12 +2,12 @@
   "name": "n-ego-back",
   "version": "1.0.0",
   "description": "",
-  "main": "build/app.js",
+  "main": "build/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch src --exec ts-node src/app.ts",
-    "start": "tsc && node build/src/app.js",
-    "build": "tsc -p . --outDir build"
+    "build": "tsc",
+    "start": "node build/src/app.js"
   },
   "repository": {
     "type": "git",
